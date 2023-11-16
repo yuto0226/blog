@@ -1,9 +1,9 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://yuto26.com/blog'
 languageCode = 'en-us'
 title = "Yuto's notes"
 theme = 'risotto'
 author = "Yuto"
-copyright = "2023 © [Yuto](https://joeroe.io)"
+copyright = "2023 © [Yuto](https://yuto26.com)"
 
 # risotto
 # alaGeek
