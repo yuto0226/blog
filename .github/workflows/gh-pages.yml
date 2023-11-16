@@ -59,13 +59,11 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/ -D"          
+            --baseURL "${{ steps.pages.outputs.base_url }}/" -D    
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: ./public
-      - name: Install Dart Sass
-        run: sudo snap install dart-sass
 
   # Deployment job
   deploy:
