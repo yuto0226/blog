@@ -14,23 +14,19 @@ copyright = "2023 © [Yuto](https://yuto26.com)"
 [[menu.main]]
     name = 'Posts'
     pageRef = '/posts'
-    weight = 20
-[[menu.main]]
-    name = 'Products'
-    pageRef = '/products'
-    weight = 20
+    weight = 1
 [[menu.main]]
     name = 'Tags'
     pageRef = '/tags'
-    weight = 20
+    weight = 3
 [[menu.main]]
     name = 'Categories'
     pageRef = '/categories'
-    weight = 20
+    weight = 2
 [[menu.main]]
     name = 'About'
     pageRef = '/about'
-    weight = 20
+    weight = 10
 
 # Automatically add content sections to main menu
 sectionPagesMenu = "main"
