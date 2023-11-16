@@ -10,6 +10,8 @@ copyright = "2023 © [Yuto](https://yuto26.com)"
 # nightfall
 # hugo-ficurinia
 
+relativeURLs = true
+
 [menu]
 [[menu.main]]
     name = 'Posts'
