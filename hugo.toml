@@ -1,0 +1,68 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = "Yuto's notes"
+theme = 'risotto'
+author = "Yuto"
+copyright = "2023 © [Yuto](https://joeroe.io)"
+
+# risotto
+# alaGeek
+# nightfall
+# hugo-ficurinia
+
+[menu]
+[[menu.main]]
+    name = 'Posts'
+    pageRef = '/posts'
+    weight = 20
+[[menu.main]]
+    name = 'Products'
+    pageRef = '/products'
+    weight = 20
+[[menu.main]]
+    name = 'Tags'
+    pageRef = '/tags'
+    weight = 20
+[[menu.main]]
+    name = 'Categories'
+    pageRef = '/categories'
+    weight = 20
+[[menu.main]]
+    name = 'About'
+    pageRef = '/about'
+    weight = 20
+
+# Automatically add content sections to main menu
+sectionPagesMenu = "main"
+
+[params]
+noindex = false
+
+[params.theme]
+palette = "base16-dark"
+
+# Sidebar: about/bio
+[params.about]
+title = "Yuto"
+description = "資工系的學生"
+logo = "images/rice.svg"
+
+# Sidebar: social links
+# Available icon sets:
+# * FontAwesome 6 <https://fontawesome.com/> ('fa-brands', 'fa-normal', or 'fa-solid' for brands)
+# * Academicons <https://jpswalsh.github.io/academicons> ('ai ai-')
+
+[[params.socialLinks]]
+icon = "fa-brands fa-github"
+title = "GitHub"
+url = "https://github.com/yuto-0226"
+
+[[params.socialLinks]]
+icon = "fa-solid fa-envelope"
+title = "Email"
+url = "mailto:wayne71112@gmail.com"
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+series = "series"
