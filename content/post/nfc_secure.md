@@ -22,12 +22,12 @@ MIFARE是恩智浦半導體公司（NXP Semiconductors）擁有的一系列RFID�
 然而，MIFARE 的安全性備受質疑。早在 2007 年，就有駭客破解了 MIFARE 晶片的演算法，並且有相關論文探討。
 
 > 2007年12月，在騷亂交流大會上Henryk Plötz和Karsten Nohl[6]發表了部分用於MIFARE晶片演算法上的逆向工程技術[7]。
-> <br><cite>維基百科：MIFARE<cite>
+> <br><cite>維基百科：MIFARE</cite>
 
 而台灣的紀錄著名的則有：
 
 >2010年7月，臺灣大學電機系教授鄭振牟團隊使用改進過的監聽封包（Sniffer-Based）的攻擊手法攻擊Mifare卡。將1張正常使用中的悠遊卡，將餘額從正100多元，更改成為負五百多元[12]。
-> [name=維基百科：MIFARE]
+> <br><cite>維基百科：MIFARE</cite>
 
 在2021 SITCON 學生計算機年會，也有講者於「[RFID 硬體資安實戰](https://hackmd.io/YtbBU59oSoKJuiSCQss4eQ?view)」議程中分享MIFARE卡的資安問題。由此也可以看出其安全問題早已存在很久了。
 
