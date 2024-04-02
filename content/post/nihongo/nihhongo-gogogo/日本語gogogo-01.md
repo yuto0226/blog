@@ -5,6 +5,7 @@ categories:
   - 日語
 tags:
   - 日本語GoGoGo
+draft: true
 ---
 # ～は～です
 私は学生です。[我是學生]{.green}
