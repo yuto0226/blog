@@ -5,4 +5,9 @@ menu:
         weight: 1
         params:
             icon: home
+    csie:
+        name: 計算機科學
+        weight: 2
+        params:
+            icon: cpu
 ---
