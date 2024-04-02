@@ -1,4 +1,4 @@
 ---
-title: missing semester
+title: ./missing-semester
 image: cover.jpg
 ---
