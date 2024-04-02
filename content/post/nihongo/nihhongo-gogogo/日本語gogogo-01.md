@@ -2,7 +2,7 @@
 title: 第一課 
 date: 2022-09-27 20:47:41
 categories:
-  - 日本語
+  - 日語
 tags:
   - 日本語GoGoGo
 ---
