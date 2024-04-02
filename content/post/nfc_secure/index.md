@@ -1,6 +1,7 @@
 ---
 title: 悠遊卡的資安問題
 date: 2024-02-26 00:00:00+0000
+image: cover.png
 categories:
     - 計算機科學
 tags:
