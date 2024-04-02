@@ -1,5 +1,6 @@
 ---
 title: '[C++]BIT 樹狀樹組'
+slug: bitree
 categories:
   - [計算機科學,資料結構 & 演算法]
 tags:
@@ -7,8 +8,7 @@ tags:
   - C++
   - 資料結構
 date: 2022-04-01 11:52:00
-cover: https://i.imgur.com/ISJQZSj.png
-top_img: https://i.imgur.com/ISJQZSj.png
+image: https://i.imgur.com/ISJQZSj.png
 comments:
 ---
 # BIT
@@ -17,7 +17,7 @@ comments:
 
 樹狀數組也稱作 Fenwick Tree 或 Binary Indexed Tree(BIT)，用來儲存資料，且可以快速求出前綴和或區間加總。對於一個長度 n 的陣列，可以在 O(n) 的時間初始化，在 O(n) 時間詢問一個前綴的訊息例如前綴和，以及在 O(n) 的時間修改其中一個值。但是 BIT 的缺點就是有些問題無法轉為前綴間的運算，無法個別操作元素。
 
-![](https://i.imgur.com/d611u7b.png)
+![bit](https://i.imgur.com/d611u7b.png)
 
 由上面這張圖可了解 BIT 儲存的區間。`Index[]` 為儲存資料的陣列，`BIT[]` 為實際上儲存的區間。
 

@@ -1,10 +1,11 @@
 ---
 title: '[C++]線段樹'
+slug: segment-tree
 date: 2022-11-13 20:21:16
-cover:
-top_img:
+image:
 categories:
-    - [計算機科學,資料結構 & 演算法]
+    - 計算機科學
+    - 資料結構 & 演算法
 tags:
   - 筆記
   - C++

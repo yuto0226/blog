@@ -1,15 +1,15 @@
 ---
 title: '[C++]感知機 PLA'
+slug: perceptron
 categories:
-  - [計算機科學,資料結構 & 演算法]
+  - 計算機科學
+  - 資料結構 & 演算法
 tags:
   - 筆記
   - C++
   - 類神經網路
 date: 2022-05-12 14:20:28
-cover: https://i.imgur.com/M3cjS9J.png
-top_img: https://i.imgur.com/M3cjS9J.png
-comment: true
+image: https://i.imgur.com/M3cjS9J.png
 ---
 # 感知機 PLA
 針對線性資料的分類

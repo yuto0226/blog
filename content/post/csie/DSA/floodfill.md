@@ -1,11 +1,11 @@
 ---
 title: '[C++]泛洪演算法 Flood Fill Alogrithm'
+slug: floodfill
 date: 2022-02-05 14:29:02
-cover: https://i.imgur.com/gZKSRXT.png
-top_img: https://i.imgur.com/gZKSRXT.png
-comments:
+image: https://i.imgur.com/gZKSRXT.png
 categories:
-  - [計算機科學,資料結構 & 演算法]
+  - 計算機科學
+  - 資料結構 & 演算法
 tags:
   - 筆記
   - C++

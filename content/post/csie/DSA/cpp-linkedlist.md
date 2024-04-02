@@ -1,10 +1,11 @@
 ---
 title: '[C++]鏈接串列 Linked List'
+slug: linkedlist
 date: 2022-01-01 21:00:11
-cover: https://i.imgur.com/qkADZ5a.png
-top_img: https://i.imgur.com/qkADZ5a.png
+image: https://i.imgur.com/qkADZ5a.png
 categories:
-    - [計算機科學,資料結構 & 演算法]
+    - 計算機科學
+    - 資料結構 & 演算法
 tags:
     - 筆記
     - C++

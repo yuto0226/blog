@@ -1,8 +1,7 @@
 ---
 title: 向量 Vector(STL)
 date: 2022-01-05 20:24:37
-cover: https://i.imgur.com/LV9jk0s.png
-top_img: https://i.imgur.com/LV9jk0s.png
+image: https://i.imgur.com/LV9jk0s.png
 categories:
     - [計算機科學,C++,STL]
 tags:
