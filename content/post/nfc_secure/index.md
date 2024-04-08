@@ -1,5 +1,6 @@
 ---
 title: 悠遊卡的資安問題
+slug: the-security-of-easy-card-payment
 date: 2024-02-26 00:00:00+0000
 image: cover.png
 categories:

@@ -76,7 +76,7 @@ enabled = true
 ## Comments
 [comments]
 enabled = true
-provider = "utterances"
+provider = "giscus"
 
 [comments.disqusjs]
 shortname = ""
@@ -129,15 +129,18 @@ serverName = "cactus.chat"
 siteName = ""
 
 [comments.giscus]
-repo = ""
-repoID = ""
-category = ""
-categoryID = ""
-mapping = ""
+repo = "yuto0226/blog"
+repoID = "R_kgDOKuFr_g"
+category = "Announcements"
+categoryID = "DIC_kwDOKuFr_s4CeiNj"
+mapping = "pathname"
+reactionsEnabled="1"
+emitMetadata="0"
+theme="preferred_color_scheme"
 lightTheme = ""
 darkTheme = ""
-reactionsEnabled = 1
-emitMetadata = 0
+dataLang="zh-TW"
+loading="lazy"
 
 [comments.gitalk]
 owner = ""
