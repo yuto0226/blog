@@ -2,7 +2,8 @@
 title: '[C++]BIT 樹狀樹組'
 slug: bitree
 categories:
-  - [計算機科學,資料結構 & 演算法]
+  - 計算機科學
+  - 資料結構 & 演算法
 tags:
   - 筆記
   - C++
