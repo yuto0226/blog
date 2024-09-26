@@ -2,6 +2,7 @@
 title: 'Latex 編譯時缺少 .sty 檔案'
 date: 2022-11-21 01:04:43
 categories:
+- Troubleshooting
 tags:
     - 'Latex'
     - '除錯紀錄'

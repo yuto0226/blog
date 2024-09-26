@@ -3,7 +3,7 @@ title: POPCAT 自動連點器
 date: 2021-08-18 19:13:26
 img: https://i.imgur.com/BoGQnP1.jpg
 categories:
-    - 作品
+    - Project
 tags:
     - Python
     - 網路爬蟲
