@@ -3,10 +3,16 @@
 languageName = "English"
 languagedirection = "ltr"
 title = "Yuto's Note"
-weight = 1
+weight = 2
 
 [zh-tw]
-languageName = "Traditional Chinese"
+languageName = "繁體中文"
+languagedirection = "ltr"
+title = "Yuto's Note"
+weight = 0
+
+[ja]
+languageName = "日本語"
 languagedirection = "ltr"
 title = "Yuto's Note"
 weight = 1
