@@ -1,5 +1,5 @@
 # Change baseurl before deploy
-baseurl = "https://yuto0226.com/blog"
+baseurl = "https://blog.yuto0226.com/"
 languageCode = "zh-tw"
 paginate = 8
 title = "Yuto's Notes"
