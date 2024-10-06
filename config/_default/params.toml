@@ -6,7 +6,7 @@ favicon = "/favicon.png"
 
 [footer]
 since = 2021
-customText = ""
+customText = "Never Too Late To Start"
 
 [dateFormat]
 published = "Jan 02, 2006"
@@ -61,7 +61,7 @@ card = "summary_large_image"
 [defaultImage.opengraph]
 enabled = true
 local = false
-src = "https://picsum.photos/500/400"
+src = "https://picsum.photos/1200/630"
 
 [colorScheme]
 toggle = true
