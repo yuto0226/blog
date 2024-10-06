@@ -1,5 +1,6 @@
 ---
-title: 連結
+title: "連結"
+slug: "連結"
 links:
   - title: CyberChef
     description: 好用的 encode 轉換

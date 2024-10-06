@@ -1,7 +1,7 @@
 ---
 title: 検索
-slug: "search"
 layout: "search"
+slug: "検索" 
 outputs:
     - html
     - json

@@ -1,5 +1,6 @@
 ---
 title: "リンクス"
+slug: "リンクス"
 links:
   - title: CyberChef
     description: 好用的 encode 轉換

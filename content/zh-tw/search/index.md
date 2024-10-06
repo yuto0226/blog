@@ -1,7 +1,7 @@
 ---
-title: 搜尋
-slug: "search"
+title: "搜尋"
 layout: "search"
+slug: "搜尋"
 outputs:
     - html
     - json
