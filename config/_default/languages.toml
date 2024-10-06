@@ -1,18 +1,21 @@
 # Rename this file to languages.toml to enable multilingual support
-[en]
-languageName = "English"
-languagedirection = "ltr"
-title = "Yuto's Note"
-weight = 2
-
 [zh-tw]
 languageName = "繁體中文"
 languagedirection = "ltr"
 title = "Yuto's Note"
-weight = 0
+weight = 10
+contentDir = 'content/zh-tw'
 
 [ja]
 languageName = "日本語"
 languagedirection = "ltr"
 title = "Yuto's Note"
-weight = 1
+weight = 20
+contentDir = 'content/ja'
+
+[en]
+languageName = "English"
+languagedirection = "ltr"
+title = "Yuto's Note"
+weight = 30
+contentDir = 'content/en'
