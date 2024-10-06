@@ -14,3 +14,11 @@ url = "https://github.com/yuto0226"
 
 [social.params]
 icon = "brand-github"
+
+[[social]]
+identifier = "Instagram"
+name = "IG"
+url = "https://instagram.com/sw_1a4"
+
+[social.params]
+icon = "brand-instagram"
