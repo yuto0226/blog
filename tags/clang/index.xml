@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Clang on Yuto's Note</title><link>https://blog.yuto0226.com/tags/clang/</link><description>Recent content in Clang on Yuto's Note</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Sun, 07 Apr 2024 01:37:32 +0800</lastBuildDate><atom:link href="https://blog.yuto0226.com/tags/clang/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows 11 中 Neovim clangd 找不到標頭檔</title><link>https://blog.yuto0226.com/post/neovim-clangd-no-found-header-file/</link><pubDate>Sun, 07 Apr 2024 01:37:32 +0800</pubDate><guid>https://blog.yuto0226.com/post/neovim-clangd-no-found-header-file/</guid><description>&lt;img src="https://blog.yuto0226.com/post/neovim-clangd-no-found-header-file/cover.png" alt="Featured image of post Windows 11 中 Neovim clangd 找不到標頭檔" />&lt;p>近日在使用一個 Neovim 的發行版 NVChad，設定 C/C++ 的 LSP Server。然後就遇到了標頭檔找不到的問題。&lt;/p>
+&lt;img src="image.png" alt="標頭檔找不到" width="800"/>
+&lt;p>可以看到 Neovim 裡面的介面上面出現警告資訊：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="s1">&amp;#39;stdio.h&amp;#39;&lt;/span> file not found
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這就很奇怪了，根據我過往使用 gcc 的經驗，C library 應該是不用再額外引入的。&lt;/p>
+&lt;h2 id="找資料">找資料
+&lt;/h2>&lt;p>我的第一步就是直接上 Google 找：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">nvim clangd
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>於是我就找到了這一篇 stack overflow 的文章&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://stackoverflow.com/questions/59019932/what-standard-c-library-does-clang-use-glibc-its-own-or-some-other-one" target="_blank" rel="noopener"
+>What standard C library does Clang use? glibc, its own, or some other one?&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>上面就詢問了 clang 是使用了哪一個 C 的函式庫。&lt;/p>
+&lt;blockquote>
+&lt;p>Clang does not come with its own C standard library. Rather, it &lt;a class="link" href="https://clang.llvm.org/docs/Toolchain.html#c-standard-library" target="_blank" rel="noopener"
+>&amp;ldquo;supports a wide variety of C standard library implementations&amp;rdquo;&lt;/a>.&lt;/p>
+&lt;p>Unix-like systems including Mac OS ship with their own. Windows does not. On Windows the default arrangement requires Microsoft&amp;rsquo;s Visual C libraries to be installed. It seems that it&amp;rsquo;s also possible to use Clang on Windows with MinGW&amp;rsquo;s libraries though.
+&lt;br>╴&lt;i class="fa-solid fa-user">&lt;/i> &lt;em>hippietrail&lt;/em>&lt;/p>
+&lt;/blockquote>
+&lt;p>回覆的大略是說，Clang 並沒有自己的 C 函式庫。其中最引人注目的便是他所引入的網址了，妥妥的一手資料，是絕佳的參考資料。&lt;/p>
+&lt;p>因此我接著去找 Clangd 的官方文檔，我找到了這段說明&lt;/p>
+&lt;ul>
+&lt;li>&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>If you’re using an unusual compiler (e.g. a cross-compiler for a different platform, or MinGW on Windows) you may want to pass &amp;ndash;query-driver=/path/to/mygcc or &amp;ndash;query-driver=/path/to/mygcc,/path/to/myg++ when using C++ to allow clangd to extract the include paths from it directly.&lt;/p>
+&lt;/blockquote>
+&lt;p>這跟我的情況很像，Clang 找不到我的 gcc 帶的 C library。於是我參考了 Configuration 中的指示去把 &lt;code>--query-driver=C:\Users\USER\scoop\apps\gcc\current\bin&lt;/code> 的編譯參數寫入 Clang 的 &lt;code>C:\Users\USER\AppData\Local\clangd\config.yaml&lt;/code>，來調整預設的編譯參數。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">CompileFlags&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">--query-driver&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">C:\Users\USER\scoop\apps\gcc\current\bin&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但很顯然的結果並不那麼美好&lt;/p>
+&lt;img src="image.png" alt="標頭檔找不到" width="800"/>
+&lt;p>基本上還是一樣的狀況。但隨後我就在 issue 中找到了一篇跟我狀況相似的，同樣是 Windows 作業系統，同樣是用 &lt;code>--query-driver&lt;/code>。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://github.com/clangd/clangd/issues/537#issuecomment-1479544442" target="_blank" rel="noopener"
+>https://github.com/clangd/clangd/issues/537#issuecomment-1479544442&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="總結">總結
+&lt;/h2>&lt;p>上述那篇 issue 的留言給出了一個解法&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">CompileFlags&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- --&lt;span class="l">target=x86_64-w64-windows-gnu&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="參考資料">參考資料
+&lt;/h2>&lt;ul>
+&lt;li>&lt;a class="link" href="https://clangd.llvm.org/troubleshooting#cant-find-standard-library-headers-map-stdioh-etc" target="_blank" rel="noopener"
+>Clangd:Troubleshooting-Can’t find standard library headers (&lt;map>, &amp;lt;stdio.h&amp;gt; etc)&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://clangd.llvm.org/config#files" target="_blank" rel="noopener"
+>Clangd:Configuration-Files&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://github.com/clangd/clangd/issues/537#issuecomment-1479544442" target="_blank" rel="noopener"
+>&amp;ndash;query-driver not having any effect #537&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>

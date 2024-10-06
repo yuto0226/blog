@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hack Life on Yuto's Note</title><link>https://blog.yuto0226.com/tags/hack-life/</link><description>Recent content in Hack Life on Yuto's Note</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Wed, 18 Aug 2021 19:13:26 +0000</lastBuildDate><atom:link href="https://blog.yuto0226.com/tags/hack-life/index.xml" rel="self" type="application/rss+xml"/><item><title>POPCAT 自動連點器</title><link>https://blog.yuto0226.com/post/popcat-%E8%87%AA%E5%8B%95%E9%80%A3%E9%BB%9E%E5%99%A8/</link><pubDate>Wed, 18 Aug 2021 19:13:26 +0000</pubDate><guid>https://blog.yuto0226.com/post/popcat-%E8%87%AA%E5%8B%95%E9%80%A3%E9%BB%9E%E5%99%A8/</guid><description>&lt;h1 id="前言">前言
+&lt;/h1>&lt;p>近期Pop cat風靡全球 大家都想拿到第一名
+什麼是Pop cat? 這就要從一隻可愛的貓說起&lt;/p>
+&lt;blockquote>
+&lt;p>Popcat風潮來自推特上一段爆紅的貓咪影片 這隻名為Oatmeal的貓咪正在向主人Xavier撒嬌 嘴巴一開一合的 樣子非常可愛
+Xavier也把Oatmeal的圖片做成gif圖 後來被他的朋友PO到Reddit論壇上 突然爆紅 被歐美網友們做成各式各樣的迷因（meme） 搭配上「POP」的音效
+-數位時代。檢自https://www.bnext.com.tw/article/64440/popcat-click-competition-janis (2021/08/19)&lt;/p>
+&lt;/blockquote>
+&lt;blockquote class="twitter-tweet">&lt;p lang="en" dir="ltr">So there&amp;#39;s a video with some images of my cat Oatmeal out and here&amp;#39;s the full clip of him chirping at a bug. &lt;a href="https://t.co/4MVTWiIknc">pic.twitter.com/4MVTWiIknc&lt;/a>&lt;/p>&amp;mdash; Xavier (@XavierBFB) &lt;a href="https://twitter.com/XavierBFB/status/1315184155274211329?ref_src=twsrc%5Etfw">October 11, 2020&lt;/a>&lt;/blockquote> &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;p>我那時就想 一直點一直點手很酸 國外也有人用連點器 (物理)
+那為什麼我不來試看看用程式寫
+然後又剛好看到 Youtube 上的 Selenium 教學
+剛好可以讓我寫出連點器 於是便著手編寫了&lt;/p>
+&lt;h1 id="selenium">Selenium
+&lt;/h1>&lt;blockquote>
+&lt;p>Selenium 是一個綜合性的項目，為web瀏覽器的自動化提供了各種工具和依賴包&lt;/p>
+&lt;/blockquote>
+&lt;p>要在 Python 中使用 Selenium 要先安裝它的套件&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">$ pip install selenium
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然後要安裝對應的 WebDriver 才能讓它在瀏覽器上面跑
+這邊就用 Chrome (&lt;a class="link" href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank" rel="noopener"
+>網址&lt;/a>)
+記得要挑對版本下載
+下載完後把他丟到程式檔案的同一個資料夾就可以了&lt;/p>
+&lt;h1 id="程式碼">程式碼
+&lt;/h1>&lt;p>Github: &lt;a class="link" href="https://github.com/yuuto-0226/popcat_autoclick" target="_blank" rel="noopener"
+>連結&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-py" data-lang="py">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">webdriver&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">random&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">PATH&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;./chromedriver.exe&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">driver&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Chrome&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">PATH&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;https://popcat.click/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">neko&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_element_by_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;app&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 隨機點擊次數及休息時間&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">click_random&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">random&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">random&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">500&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">sec_random&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">random&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">random&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">while&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">click_random&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">neko&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">sec_random&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

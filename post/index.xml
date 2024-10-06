@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Yuto's Note</title><link>https://blog.yuto0226.com/post/</link><description>Recent content in Posts on Yuto's Note</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Sat, 25 May 2024 00:46:14 +0800</lastBuildDate><atom:link href="https://blog.yuto0226.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows 11 中 Neovim clangd 找不到標頭檔</title><link>https://blog.yuto0226.com/post/neovim-clangd-no-found-header-file/</link><pubDate>Sun, 07 Apr 2024 01:37:32 +0800</pubDate><guid>https://blog.yuto0226.com/post/neovim-clangd-no-found-header-file/</guid><description>&lt;img src="https://blog.yuto0226.com/post/neovim-clangd-no-found-header-file/cover.png" alt="Featured image of post Windows 11 中 Neovim clangd 找不到標頭檔" />&lt;p>近日在使用一個 Neovim 的發行版 NVChad，設定 C/C++ 的 LSP Server。然後就遇到了標頭檔找不到的問題。&lt;/p>
+&lt;img src="image.png" alt="標頭檔找不到" width="800"/>
+&lt;p>可以看到 Neovim 裡面的介面上面出現警告資訊：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="s1">&amp;#39;stdio.h&amp;#39;&lt;/span> file not found
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這就很奇怪了，根據我過往使用 gcc 的經驗，C library 應該是不用再額外引入的。&lt;/p>
+&lt;h2 id="找資料">找資料
+&lt;/h2>&lt;p>我的第一步就是直接上 Google 找：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">nvim clangd
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>於是我就找到了這一篇 stack overflow 的文章&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://stackoverflow.com/questions/59019932/what-standard-c-library-does-clang-use-glibc-its-own-or-some-other-one" target="_blank" rel="noopener"
+>What standard C library does Clang use? glibc, its own, or some other one?&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>上面就詢問了 clang 是使用了哪一個 C 的函式庫。&lt;/p>
+&lt;blockquote>
+&lt;p>Clang does not come with its own C standard library. Rather, it &lt;a class="link" href="https://clang.llvm.org/docs/Toolchain.html#c-standard-library" target="_blank" rel="noopener"
+>&amp;ldquo;supports a wide variety of C standard library implementations&amp;rdquo;&lt;/a>.&lt;/p>
+&lt;p>Unix-like systems including Mac OS ship with their own. Windows does not. On Windows the default arrangement requires Microsoft&amp;rsquo;s Visual C libraries to be installed. It seems that it&amp;rsquo;s also possible to use Clang on Windows with MinGW&amp;rsquo;s libraries though.
+&lt;br>╴&lt;i class="fa-solid fa-user">&lt;/i> &lt;em>hippietrail&lt;/em>&lt;/p>
+&lt;/blockquote>
+&lt;p>回覆的大略是說，Clang 並沒有自己的 C 函式庫。其中最引人注目的便是他所引入的網址了，妥妥的一手資料，是絕佳的參考資料。&lt;/p>
+&lt;p>因此我接著去找 Clangd 的官方文檔，我找到了這段說明&lt;/p>
+&lt;ul>
+&lt;li>&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>If you’re using an unusual compiler (e.g. a cross-compiler for a different platform, or MinGW on Windows) you may want to pass &amp;ndash;query-driver=/path/to/mygcc or &amp;ndash;query-driver=/path/to/mygcc,/path/to/myg++ when using C++ to allow clangd to extract the include paths from it directly.&lt;/p>
+&lt;/blockquote>
+&lt;p>這跟我的情況很像，Clang 找不到我的 gcc 帶的 C library。於是我參考了 Configuration 中的指示去把 &lt;code>--query-driver=C:\Users\USER\scoop\apps\gcc\current\bin&lt;/code> 的編譯參數寫入 Clang 的 &lt;code>C:\Users\USER\AppData\Local\clangd\config.yaml&lt;/code>，來調整預設的編譯參數。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">CompileFlags&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">--query-driver&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">C:\Users\USER\scoop\apps\gcc\current\bin&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但很顯然的結果並不那麼美好&lt;/p>
+&lt;img src="image.png" alt="標頭檔找不到" width="800"/>
+&lt;p>基本上還是一樣的狀況。但隨後我就在 issue 中找到了一篇跟我狀況相似的，同樣是 Windows 作業系統，同樣是用 &lt;code>--query-driver&lt;/code>。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://github.com/clangd/clangd/issues/537#issuecomment-1479544442" target="_blank" rel="noopener"
+>https://github.com/clangd/clangd/issues/537#issuecomment-1479544442&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="總結">總結
+&lt;/h2>&lt;p>上述那篇 issue 的留言給出了一個解法&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">CompileFlags&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- --&lt;span class="l">target=x86_64-w64-windows-gnu&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="參考資料">參考資料
+&lt;/h2>&lt;ul>
+&lt;li>&lt;a class="link" href="https://clangd.llvm.org/troubleshooting#cant-find-standard-library-headers-map-stdioh-etc" target="_blank" rel="noopener"
+>Clangd:Troubleshooting-Can’t find standard library headers (&lt;map>, &amp;lt;stdio.h&amp;gt; etc)&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://clangd.llvm.org/config#files" target="_blank" rel="noopener"
+>Clangd:Configuration-Files&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://github.com/clangd/clangd/issues/537#issuecomment-1479544442" target="_blank" rel="noopener"
+>&amp;ndash;query-driver not having any effect #537&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>悠遊卡的資安問題</title><link>https://blog.yuto0226.com/post/%E6%82%A0%E9%81%8A%E5%8D%A1%E7%9A%84%E8%B3%87%E5%AE%89%E5%95%8F%E9%A1%8C/</link><pubDate>Mon, 26 Feb 2024 00:00:00 +0000</pubDate><guid>https://blog.yuto0226.com/post/%E6%82%A0%E9%81%8A%E5%8D%A1%E7%9A%84%E8%B3%87%E5%AE%89%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://blog.yuto0226.com/post/%E6%82%A0%E9%81%8A%E5%8D%A1%E7%9A%84%E8%B3%87%E5%AE%89%E5%95%8F%E9%A1%8C/cover.png" alt="Featured image of post 悠遊卡的資安問題" />&lt;p>近期悠遊卡公司與Apple進行把悠遊卡加到Apple的支付的事件，在網路上引發熱烈討論。然而，悠遊卡的資安問題也再度受到關注。&lt;/p>
+&lt;h2 id="悠遊卡的運作原理">悠遊卡的運作原理
+&lt;/h2>&lt;p>悠遊卡系統主要是應用 &lt;strong>法拉第電磁感應定律&lt;/strong> 來傳遞資訊。卡片內部有埋設線圈，當卡片靠近讀卡機時，讀卡機所產生的電場會讓線圈產生電流，供應給裡面的晶片（IC）產生電磁波訊號，再由讀卡機接收並解析資料。&lt;/p>
+&lt;p>這個技術被稱為「無線射頻辨識系統」（radio frequency identification，RFID），而悠遊卡裡面的則是RFID規格則是採用NXP公司的MIFARE Classic。&lt;/p>
+&lt;h2 id="mifare的安全性">MIFARE的安全性
+&lt;/h2>&lt;p>MIFARE是恩智浦半導體公司（NXP Semiconductors）擁有的一系列RFID技術。其成本低廉，讓他在目前市面上廣泛應用於各種系統，ex：門禁系統、圖書館借書證、識別卡&amp;hellip;等等。&lt;/p>
+&lt;p>然而，MIFARE 的安全性備受質疑。早在 2007 年，就有駭客破解了 MIFARE 晶片的演算法，並且有相關論文探討。&lt;/p>
+&lt;blockquote>
+&lt;p>2007年12月，在騷亂交流大會上Henryk Plötz和Karsten Nohl[6]發表了部分用於MIFARE晶片演算法上的逆向工程技術[7]。
+&lt;br>&lt;cite>維基百科：MIFARE&lt;/cite>&lt;/p>
+&lt;/blockquote>
+&lt;p>而台灣的紀錄著名的則有：&lt;/p>
+&lt;blockquote>
+&lt;p>2010年7月，臺灣大學電機系教授鄭振牟團隊使用改進過的監聽封包（Sniffer-Based）的攻擊手法攻擊Mifare卡。將1張正常使用中的悠遊卡，將餘額從正100多元，更改成為負五百多元[12]。
+&lt;br>&lt;cite>維基百科：MIFARE&lt;/cite>&lt;/p>
+&lt;/blockquote>
+&lt;p>在2021 SITCON 學生計算機年會，也有講者於「&lt;a class="link" href="https://hackmd.io/YtbBU59oSoKJuiSCQss4eQ?view" target="_blank" rel="noopener"
+>RFID 硬體資安實戰&lt;/a>」議程中分享MIFARE卡的資安問題。由此也可以看出其安全問題早已存在很久了。&lt;/p>
+&lt;h2 id="悠遊卡公司的應對方式">悠遊卡公司的應對方式
+&lt;/h2>&lt;p>遊遊卡公司面對這樣的資安問題，也只有透過補漏動的方式監督使用者。主要的作法為：&lt;/p>
+&lt;ul>
+&lt;li>用法律方式來嚇阻&lt;/li>
+&lt;li>搭配後台的資料庫核對不正當的竄改資料。&lt;/li>
+&lt;/ul>
+&lt;h2 id="改善方法">改善方法
+&lt;/h2>&lt;p>相較於於悠遊卡的MIFARE Classic技術，日本SUICA所使用的Felica技術具有更高的安全性，Apple也早已將SUICA整合進Apple Pay中。&lt;/p>
+&lt;p>此外，Apple也早已接納同是MIFARE家族，但安全性更高的MIFARE DESFire規格。&lt;/p>
+&lt;h2 id="參考資料">參考資料
+&lt;/h2>&lt;ul>
+&lt;li>&lt;a class="link" href="https://pansci.asia/archives/359263" target="_blank" rel="noopener"
+>一卡在手便利無窮，悠遊卡的設計原理——《我們的生活比你想的還物理》&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.ithome.com.tw/news/69970" target="_blank" rel="noopener"
+>悠遊卡遭駭，Mifare卡安全性遭質疑&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://canon.jp/business/solution/pro-printer/idprinter/useful/iccardcategory" target="_blank" rel="noopener"
+>FeliCa、Mifareの違いを解説！ICカードの種類と特長を比較する&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://mrmad.com.tw/iphone-support-easycard-ipass" target="_blank" rel="noopener"
+>Apple Pay為什麼不支援悠遊卡原因完全揭秘，金管會給出獨家答案&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://developer.apple.com/documentation/corenfc" target="_blank" rel="noopener"
+>Apple&amp;rsquo;s Core NFC Framework&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/zh-tw/%E6%82%A0%E9%81%8A%E5%8D%A1" target="_blank" rel="noopener"
+>維基百科：悠遊卡&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/MIFARE" target="_blank" rel="noopener"
+>維基百科：MIFARE&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>OpenCV 使用前置攝影機</title><link>https://blog.yuto0226.com/post/opencv-%E4%BD%BF%E7%94%A8%E5%89%8D%E7%BD%AE%E6%94%9D%E5%BD%B1%E6%A9%9F/</link><pubDate>Sun, 06 Aug 2023 14:51:43 +0000</pubDate><guid>https://blog.yuto0226.com/post/opencv-%E4%BD%BF%E7%94%A8%E5%89%8D%E7%BD%AE%E6%94%9D%E5%BD%B1%E6%A9%9F/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-py" data-lang="py">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">cv2&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">cv&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">cam&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">cv&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">VideoCapture&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">while&lt;/span> &lt;span class="kc">True&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ret&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">frame&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">cam&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cv&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">imshow&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;cam&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">frame&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">cv&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">waitKey&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="nb">ord&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;q&amp;#39;&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">break&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">cam&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">release&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">cv&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">destroyAllWindows&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Latex 編譯時缺少 .sty 檔案</title><link>https://blog.yuto0226.com/post/latex-%E7%B7%A8%E8%AD%AF%E6%99%82%E7%BC%BA%E5%B0%91-.sty-%E6%AA%94%E6%A1%88/</link><pubDate>Mon, 21 Nov 2022 01:04:43 +0000</pubDate><guid>https://blog.yuto0226.com/post/latex-%E7%B7%A8%E8%AD%AF%E6%99%82%E7%BC%BA%E5%B0%91-.sty-%E6%AA%94%E6%A1%88/</guid><description>&lt;p>用 &lt;a class="link" href="https://ctan.org/pkg" target="_blank" rel="noopener"
+>CTAN&lt;/a> 單獨把遺失的檔案載回來，整個資料夾放回 &lt;code>C:\texlive\&amp;lt;年分&amp;gt;\texmf-dist\tex\latex&lt;/code>，然後在 Terminal 裡面 :&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">texhash
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>POPCAT 自動連點器</title><link>https://blog.yuto0226.com/post/popcat-%E8%87%AA%E5%8B%95%E9%80%A3%E9%BB%9E%E5%99%A8/</link><pubDate>Wed, 18 Aug 2021 19:13:26 +0000</pubDate><guid>https://blog.yuto0226.com/post/popcat-%E8%87%AA%E5%8B%95%E9%80%A3%E9%BB%9E%E5%99%A8/</guid><description>&lt;h1 id="前言">前言
+&lt;/h1>&lt;p>近期Pop cat風靡全球 大家都想拿到第一名
+什麼是Pop cat? 這就要從一隻可愛的貓說起&lt;/p>
+&lt;blockquote>
+&lt;p>Popcat風潮來自推特上一段爆紅的貓咪影片 這隻名為Oatmeal的貓咪正在向主人Xavier撒嬌 嘴巴一開一合的 樣子非常可愛
+Xavier也把Oatmeal的圖片做成gif圖 後來被他的朋友PO到Reddit論壇上 突然爆紅 被歐美網友們做成各式各樣的迷因（meme） 搭配上「POP」的音效
+-數位時代。檢自https://www.bnext.com.tw/article/64440/popcat-click-competition-janis (2021/08/19)&lt;/p>
+&lt;/blockquote>
+&lt;blockquote class="twitter-tweet">&lt;p lang="en" dir="ltr">So there&amp;#39;s a video with some images of my cat Oatmeal out and here&amp;#39;s the full clip of him chirping at a bug. &lt;a href="https://t.co/4MVTWiIknc">pic.twitter.com/4MVTWiIknc&lt;/a>&lt;/p>&amp;mdash; Xavier (@XavierBFB) &lt;a href="https://twitter.com/XavierBFB/status/1315184155274211329?ref_src=twsrc%5Etfw">October 11, 2020&lt;/a>&lt;/blockquote> &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;p>我那時就想 一直點一直點手很酸 國外也有人用連點器 (物理)
+那為什麼我不來試看看用程式寫
+然後又剛好看到 Youtube 上的 Selenium 教學
+剛好可以讓我寫出連點器 於是便著手編寫了&lt;/p>
+&lt;h1 id="selenium">Selenium
+&lt;/h1>&lt;blockquote>
+&lt;p>Selenium 是一個綜合性的項目，為web瀏覽器的自動化提供了各種工具和依賴包&lt;/p>
+&lt;/blockquote>
+&lt;p>要在 Python 中使用 Selenium 要先安裝它的套件&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">$ pip install selenium
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然後要安裝對應的 WebDriver 才能讓它在瀏覽器上面跑
+這邊就用 Chrome (&lt;a class="link" href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank" rel="noopener"
+>網址&lt;/a>)
+記得要挑對版本下載
+下載完後把他丟到程式檔案的同一個資料夾就可以了&lt;/p>
+&lt;h1 id="程式碼">程式碼
+&lt;/h1>&lt;p>Github: &lt;a class="link" href="https://github.com/yuuto-0226/popcat_autoclick" target="_blank" rel="noopener"
+>連結&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-py" data-lang="py">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">webdriver&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">random&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">PATH&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;./chromedriver.exe&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">driver&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Chrome&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">PATH&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;https://popcat.click/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">neko&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_element_by_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;app&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 隨機點擊次數及休息時間&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">click_random&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">random&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">random&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">500&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">sec_random&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">random&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">random&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">while&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">click_random&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">neko&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">sec_random&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

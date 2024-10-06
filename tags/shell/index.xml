@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shell on Yuto's Note</title><link>https://blog.yuto0226.com/tags/shell/</link><description>Recent content in Shell on Yuto's Note</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Mon, 26 Sep 2022 17:30:41 +0000</lastBuildDate><atom:link href="https://blog.yuto0226.com/tags/shell/index.xml" rel="self" type="application/rss+xml"/><item><title>Lecture 1:Course Overview + The Shell</title><link>https://blog.yuto0226.com/post/lecture-1course-overview--the-shell/</link><pubDate>Mon, 26 Sep 2022 17:30:41 +0000</pubDate><guid>https://blog.yuto0226.com/post/lecture-1course-overview--the-shell/</guid><description>&lt;p>MIT的教授們所開設的課程。每堂課都有&lt;a class="link" href="https://missing.csail.mit.edu/" target="_blank" rel="noopener"
+>線上筆記&lt;/a>可以參考。&lt;/p>
+&lt;h1 id="the-shell">The Shell
+&lt;/h1>&lt;p>當你打開Shell，統常只會有一行字在做上方，稱作&lt;strong>系統提示(Shell Prompt)&lt;/strong>。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@localhost&lt;span class="o">]&lt;/span> $
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>上面有使用者名稱(user name)跟現在使用的機器名稱還有現在所在的路徑(path)。你可以在系統提示輸入指令Shell會解析指令，例如最簡單的指令便是執行一個程式且帶有引數(argument):&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">date
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tue Sep &lt;span class="m">27&lt;/span> 08:40:51 CST &lt;span class="m">2022&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>以date這隻程式來說，他會把現在的日期跟時間印在shell上。
+那當然也可以使用帶有引數的程式:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> hello
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hello
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Before the Course</title><link>https://blog.yuto0226.com/post/before-the-course/</link><pubDate>Mon, 26 Sep 2022 17:29:58 +0000</pubDate><guid>https://blog.yuto0226.com/post/before-the-course/</guid><description>&lt;p>課程裡面所使用的環境都是類UNIX系統。如果你是Windows系統的話就要用WSL來模擬LINUX的環境，而且可能會有很多東西跟教授所講的不太一樣。接下來會用Windows 11操作。&lt;/p>
+&lt;p>:::warning
+Windows 10 版本必須是 2004 (19041.450) 以上
+:::&lt;/p>
+&lt;h1 id="windows-terminal">Windows Terminal
+&lt;/h1>&lt;p>一個可以讓你Terminal漂漂亮亮的東西
+&lt;a class="link" href="https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=zh-tw&amp;amp;gl=tw" target="_blank" rel="noopener"
+>Microsoft Store的連結&lt;/a>&lt;/p>
+&lt;h1 id="windows-功能">Windows 功能
+&lt;/h1>&lt;p>直接去搜尋打上&lt;code>Windows 功能&lt;/code>並點開
+&lt;img src="https://i.imgur.com/06yRB0p.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>把裡面的&lt;code>Windows 子系統 Linux 版&lt;/code>跟&lt;code>虛擬機平台&lt;/code>勾起來
+&lt;img src="https://i.imgur.com/wvDuRaG.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>開啟WindowsTerminal(Power Shell或命令提示字元都可以)&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;span class="lnt">118
+&lt;/span>&lt;span class="lnt">119
+&lt;/span>&lt;span class="lnt">120
+&lt;/span>&lt;span class="lnt">121
+&lt;/span>&lt;span class="lnt">122
+&lt;/span>&lt;span class="lnt">123
+&lt;/span>&lt;span class="lnt">124
+&lt;/span>&lt;span class="lnt">125
+&lt;/span>&lt;span class="lnt">126
+&lt;/span>&lt;span class="lnt">127
+&lt;/span>&lt;span class="lnt">128
+&lt;/span>&lt;span class="lnt">129
+&lt;/span>&lt;span class="lnt">130
+&lt;/span>&lt;span class="lnt">131
+&lt;/span>&lt;span class="lnt">132
+&lt;/span>&lt;span class="lnt">133
+&lt;/span>&lt;span class="lnt">134
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">wsl --install
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">著作權 &lt;span class="o">(&lt;/span>c&lt;span class="o">)&lt;/span> Microsoft Corporation。保留擁有權利。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">使用方式: wsl.exe &lt;span class="o">[&lt;/span>Argument&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>Options...&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>CommandLine&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">用於執行 Linux 二進位檔的引數:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 如果未提供任何命令列，wsl.exe 會啟動預設的殼層。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --exec, -e &amp;lt;CommandLine&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 執行指定的命令，但不使用預設的 Linux 殼層。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 依原樣傳遞剩餘的命令列。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">選項:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --cd &amp;lt;Directory&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 將指定的目錄設定為目前的工作目錄。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 如果使用 ~，將會使用 Linux 使用者的主目錄路徑。如果該路徑的開頭
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 為 / 字元，將會解譯為絕對 Linux 路徑。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 否則，該值必須是絕對 Windows 路徑。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --distribution, -d &amp;lt;Distro&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 執行指定的發佈。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --user, -u &amp;lt;UserName&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 以指定使用者的身分執行。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --system
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 啟動系統發佈的殼層。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">用於管理 Windows 子系統 Linux 版的引數:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --help
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 顯示使用資訊。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --install &lt;span class="o">[&lt;/span>Options&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 安裝其他 Windows 子系統 Linux 版發佈。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 如需有效發佈的清單，請使用 &lt;span class="s1">&amp;#39;wsl --list --online&amp;#39;&lt;/span>。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 選項:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --distribution, -d &lt;span class="o">[&lt;/span>Argument&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 依名稱下載並安裝發佈。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 引數:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 有效發佈名稱 &lt;span class="o">(&lt;/span>不區分大小寫&lt;span class="o">)&lt;/span>。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 範例:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> wsl --install -d Ubuntu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> wsl --install --distribution Debian
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --set-default-version &amp;lt;Version&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 針對新發佈變更預設安裝版本。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --shutdown
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 立即終止所有執行中的發佈和 WSL &lt;span class="m">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 輕量公用程式虛擬機器。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --status
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 顯示 Windows 子系統 Linux 版狀態。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --update &lt;span class="o">[&lt;/span>Options&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 如果未指定選項，則會更新 WSL &lt;span class="m">2&lt;/span> 核心
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 至最新版本。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 選項:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --rollback
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 還原至舊版 WSL &lt;span class="m">2&lt;/span> 核心。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">在 Windows 子系統 Linux 版中用於管理發佈的引數:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --export &amp;lt;Distro&amp;gt; &amp;lt;FileName&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 將發佈匯出為 tar 檔案。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 檔案名稱可以是 - 以用於標準輸出。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --import &amp;lt;Distro&amp;gt; &amp;lt;InstallLocation&amp;gt; &amp;lt;FileName&amp;gt; &lt;span class="o">[&lt;/span>Options&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 匯入指定的 tar 檔案作為新發佈。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 檔案名稱可以是 - 以用於標準輸入。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 選項:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --version &amp;lt;Version&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 指定要用於新發佈的版本。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --list, -l &lt;span class="o">[&lt;/span>Options&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 列出發佈。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 選項:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --all
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 列出全部發佈，包含
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 正在安裝或解除安裝的發佈。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --running
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 只列出目前正在執行的發佈。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --quiet, -q
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 只顯示發佈名稱。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --verbose, -v
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 顯示所有發佈的詳細資訊。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --online, -o
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 顯示可用發佈的清單，以使用 &lt;span class="s1">&amp;#39;wsl --install&amp;#39;&lt;/span> 安裝。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --set-default, -s &amp;lt;Distro&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 將發佈設定為預設值。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --set-version &amp;lt;Distro&amp;gt; &amp;lt;Version&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 變更所指定發佈的版本。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --terminate, -t &amp;lt;Distro&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 終止指定的發佈。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --unregister &amp;lt;Distro&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 取消登錄發佈並刪除根檔案系統。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --mount &amp;lt;Disk&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 在所有 WSL2 發佈中連結並裝載實體磁碟。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 選項:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --bare
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 將磁碟連結到 WSL2，但不要裝載磁碟。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --type &amp;lt;Type&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 裝載磁碟時要使用的檔案系統，若未指定，預設為 ext4。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --options &amp;lt;Options&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 其他裝載選項。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --partition &amp;lt;Index&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 要裝載之磁碟分割的索引，若未指定，預設為整個磁碟。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --unmount &lt;span class="o">[&lt;/span>Disk&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 從所有 WSL2 發佈卸載並中斷連結磁碟。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 若在沒有引數的情況下呼叫，即卸載並中斷連結所有磁碟。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以用參數&lt;code>-l -o&lt;/code>把所有發行版都印出來&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">wsl -l -o
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">以下是可安裝之有效發佈的清單。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">使用 &lt;span class="s1">&amp;#39;wsl --install -d &amp;lt;Distro&amp;gt;&amp;#39;&lt;/span> 安裝。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">NAME FRIENDLY NAME
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ubuntu Ubuntu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Debian Debian GNU/Linux
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kali-linux Kali Linux Rolling
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openSUSE-42 openSUSE Leap &lt;span class="m">42&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">SLES-12 SUSE Linux Enterprise Server v12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ubuntu-16.04 Ubuntu 16.04 LTS
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ubuntu-18.04 Ubuntu 18.04 LTS
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ubuntu-20.04 Ubuntu 20.04 LTS
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>挑自己喜歡的版本按照上面給的提示安裝，以Ubuntu為例:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">wsl --install -d Ubuntu
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

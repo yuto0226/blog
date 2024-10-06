@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal on Yuto's Note</title><link>https://blog.yuto0226.com/tags/terminal/</link><description>Recent content in Terminal on Yuto's Note</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Mon, 26 Sep 2022 17:30:41 +0000</lastBuildDate><atom:link href="https://blog.yuto0226.com/tags/terminal/index.xml" rel="self" type="application/rss+xml"/><item><title>Lecture 1:Course Overview + The Shell</title><link>https://blog.yuto0226.com/post/lecture-1course-overview--the-shell/</link><pubDate>Mon, 26 Sep 2022 17:30:41 +0000</pubDate><guid>https://blog.yuto0226.com/post/lecture-1course-overview--the-shell/</guid><description>&lt;p>MIT的教授們所開設的課程。每堂課都有&lt;a class="link" href="https://missing.csail.mit.edu/" target="_blank" rel="noopener"
+>線上筆記&lt;/a>可以參考。&lt;/p>
+&lt;h1 id="the-shell">The Shell
+&lt;/h1>&lt;p>當你打開Shell，統常只會有一行字在做上方，稱作&lt;strong>系統提示(Shell Prompt)&lt;/strong>。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@localhost&lt;span class="o">]&lt;/span> $
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>上面有使用者名稱(user name)跟現在使用的機器名稱還有現在所在的路徑(path)。你可以在系統提示輸入指令Shell會解析指令，例如最簡單的指令便是執行一個程式且帶有引數(argument):&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">date
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tue Sep &lt;span class="m">27&lt;/span> 08:40:51 CST &lt;span class="m">2022&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>以date這隻程式來說，他會把現在的日期跟時間印在shell上。
+那當然也可以使用帶有引數的程式:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> hello
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hello
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

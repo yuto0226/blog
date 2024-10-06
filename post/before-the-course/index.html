@@ -1,0 +1,324 @@
+<!doctype html><html lang=zh-tw dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="課程裡面所使用的環境都是類UNIX系統。如果你是Windows系統的話就要用WSL來模擬LINUX的環境，而且可能會有很多東西跟教授所講的不太一樣。接下來會用Windows 11操作。\n"><title>Before the Course</title>
+<link rel=canonical href=https://blog.yuto0226.com/post/before-the-course/><link rel=stylesheet href=/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css><meta property='og:title' content="Before the Course"><meta property='og:description' content="課程裡面所使用的環境都是類UNIX系統。如果你是Windows系統的話就要用WSL來模擬LINUX的環境，而且可能會有很多東西跟教授所講的不太一樣。接下來會用Windows 11操作。\n"><meta property='og:url' content='https://blog.yuto0226.com/post/before-the-course/'><meta property='og:site_name' content="Yuto's Note"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='Shell'><meta property='article:tag' content='Linux'><meta property='article:published_time' content='2022-09-26T17:29:58+00:00'><meta property='article:modified_time' content='2022-09-26T17:29:58+00:00'><meta property='og:image' content='https://picsum.photos/1200/630'><meta name=twitter:title content="Before the Course"><meta name=twitter:description content="課程裡面所使用的環境都是類UNIX系統。如果你是Windows系統的話就要用WSL來模擬LINUX的環境，而且可能會有很多東西跟教授所講的不太一樣。接下來會用Windows 11操作。\n"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='https://picsum.photos/1200/630'><link rel="shortcut icon" href=/favicon.png><script src=https://kit.fontawesome.com/71a9885d68.js crossorigin=anonymous></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切換選單>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/yuto_hu15977233818518079789.jpg width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Yuto's Note</a></h1><h2 class=site-description>喜歡電腦科學領域的人類</h2></div></header><ol class=menu-social><li><a href=https://github.com/yuto0226 target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://instagram.com/sw_1a4 target=_blank title=IG rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 4a4 4 0 014-4h8a4 4 0 014 4v8a4 4 0 01-4 4H8a4 4 0 01-4-4z"/><path d="M12 12m-3 0a3 3 0 106 0 3 3 0 10-6 0"/><path d="M16.5 7.5v.01"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首頁</span></a></li><li class=current><a href=/post/csie/><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cpu"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 5m0 1a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H6a1 1 0 01-1-1z"/><path d="M9 9h6v6H9z"/><path d="M3 10h2"/><path d="M3 14h2"/><path d="M10 3v2"/><path d="M14 3v2"/><path d="M21 10h-2"/><path d="M21 14h-2"/><path d="M14 21v-2"/><path d="M10 21v-2"/></svg>
+<span>計算機科學</span></a></li><li><a href=/%E5%AD%98%E6%AA%94/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>存檔</span></a></li><li><a href=/%E6%90%9C%E5%B0%8B/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜尋</span></a></li><li><a href=/%E9%80%A3%E7%B5%90/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>連結</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://blog.yuto0226.com/ selected>繁體中文</option><option value=https://blog.yuto0226.com/ja/>日本語</option><option value=https://blog.yuto0226.com/en/>English</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>夜晚模式</span></li></ol></li></ol></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category></header><div class=article-title-wrapper><h2 class=article-title><a href=/post/before-the-course/>Before the Course</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Sep 26, 2022</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>閱讀時間: 3 分鐘</time></div></footer></div></header><section class=article-content><p>課程裡面所使用的環境都是類UNIX系統。如果你是Windows系統的話就要用WSL來模擬LINUX的環境，而且可能會有很多東西跟教授所講的不太一樣。接下來會用Windows 11操作。</p><p>:::warning
+Windows 10 版本必須是 2004 (19041.450) 以上
+:::</p><h1 id=windows-terminal>Windows Terminal</h1><p>一個可以讓你Terminal漂漂亮亮的東西
+<a class=link href="https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=zh-tw&amp;gl=tw" target=_blank rel=noopener>Microsoft Store的連結</a></p><h1 id=windows-功能>Windows 功能</h1><p>直接去搜尋打上<code>Windows 功能</code>並點開
+<img src=https://i.imgur.com/06yRB0p.png loading=lazy></p><p>把裡面的<code>Windows 子系統 Linux 版</code>跟<code>虛擬機平台</code>勾起來
+<img src=https://i.imgur.com/wvDuRaG.png loading=lazy></p><p>開啟WindowsTerminal(Power Shell或命令提示字元都可以)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>wsl --install
+</span></span><span class=line><span class=cl>著作權 <span class=o>(</span>c<span class=o>)</span> Microsoft Corporation。保留擁有權利。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>使用方式: wsl.exe <span class=o>[</span>Argument<span class=o>]</span> <span class=o>[</span>Options...<span class=o>]</span> <span class=o>[</span>CommandLine<span class=o>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>用於執行 Linux 二進位檔的引數:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    如果未提供任何命令列，wsl.exe 會啟動預設的殼層。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --exec, -e &lt;CommandLine&gt;
+</span></span><span class=line><span class=cl>        執行指定的命令，但不使用預設的 Linux 殼層。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --
+</span></span><span class=line><span class=cl>        依原樣傳遞剩餘的命令列。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>選項:
+</span></span><span class=line><span class=cl>    --cd &lt;Directory&gt;
+</span></span><span class=line><span class=cl>        將指定的目錄設定為目前的工作目錄。
+</span></span><span class=line><span class=cl>        如果使用 ~，將會使用 Linux 使用者的主目錄路徑。如果該路徑的開頭
+</span></span><span class=line><span class=cl>        為 / 字元，將會解譯為絕對 Linux 路徑。
+</span></span><span class=line><span class=cl>        否則，該值必須是絕對 Windows 路徑。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --distribution, -d &lt;Distro&gt;
+</span></span><span class=line><span class=cl>        執行指定的發佈。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --user, -u &lt;UserName&gt;
+</span></span><span class=line><span class=cl>        以指定使用者的身分執行。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --system
+</span></span><span class=line><span class=cl>        啟動系統發佈的殼層。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>用於管理 Windows 子系統 Linux 版的引數:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --help
+</span></span><span class=line><span class=cl>        顯示使用資訊。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --install <span class=o>[</span>Options<span class=o>]</span>
+</span></span><span class=line><span class=cl>        安裝其他 Windows 子系統 Linux 版發佈。
+</span></span><span class=line><span class=cl>        如需有效發佈的清單，請使用 <span class=s1>&#39;wsl --list --online&#39;</span>。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        選項:
+</span></span><span class=line><span class=cl>            --distribution, -d <span class=o>[</span>Argument<span class=o>]</span>
+</span></span><span class=line><span class=cl>                依名稱下載並安裝發佈。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                引數:
+</span></span><span class=line><span class=cl>                    有效發佈名稱 <span class=o>(</span>不區分大小寫<span class=o>)</span>。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                範例:
+</span></span><span class=line><span class=cl>                    wsl --install -d Ubuntu
+</span></span><span class=line><span class=cl>                    wsl --install --distribution Debian
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --set-default-version &lt;Version&gt;
+</span></span><span class=line><span class=cl>        針對新發佈變更預設安裝版本。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --shutdown
+</span></span><span class=line><span class=cl>        立即終止所有執行中的發佈和 WSL <span class=m>2</span>
+</span></span><span class=line><span class=cl>        輕量公用程式虛擬機器。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --status
+</span></span><span class=line><span class=cl>        顯示 Windows 子系統 Linux 版狀態。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --update <span class=o>[</span>Options<span class=o>]</span>
+</span></span><span class=line><span class=cl>        如果未指定選項，則會更新 WSL <span class=m>2</span> 核心
+</span></span><span class=line><span class=cl>        至最新版本。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        選項:
+</span></span><span class=line><span class=cl>            --rollback
+</span></span><span class=line><span class=cl>                還原至舊版 WSL <span class=m>2</span> 核心。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>在 Windows 子系統 Linux 版中用於管理發佈的引數:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --export &lt;Distro&gt; &lt;FileName&gt;
+</span></span><span class=line><span class=cl>        將發佈匯出為 tar 檔案。
+</span></span><span class=line><span class=cl>        檔案名稱可以是 - 以用於標準輸出。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --import &lt;Distro&gt; &lt;InstallLocation&gt; &lt;FileName&gt; <span class=o>[</span>Options<span class=o>]</span>
+</span></span><span class=line><span class=cl>        匯入指定的 tar 檔案作為新發佈。
+</span></span><span class=line><span class=cl>        檔案名稱可以是 - 以用於標準輸入。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        選項:
+</span></span><span class=line><span class=cl>            --version &lt;Version&gt;
+</span></span><span class=line><span class=cl>                指定要用於新發佈的版本。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --list, -l <span class=o>[</span>Options<span class=o>]</span>
+</span></span><span class=line><span class=cl>        列出發佈。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        選項:
+</span></span><span class=line><span class=cl>            --all
+</span></span><span class=line><span class=cl>                列出全部發佈，包含
+</span></span><span class=line><span class=cl>                正在安裝或解除安裝的發佈。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            --running
+</span></span><span class=line><span class=cl>                只列出目前正在執行的發佈。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            --quiet, -q
+</span></span><span class=line><span class=cl>                只顯示發佈名稱。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            --verbose, -v
+</span></span><span class=line><span class=cl>                顯示所有發佈的詳細資訊。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            --online, -o
+</span></span><span class=line><span class=cl>                顯示可用發佈的清單，以使用 <span class=s1>&#39;wsl --install&#39;</span> 安裝。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --set-default, -s &lt;Distro&gt;
+</span></span><span class=line><span class=cl>        將發佈設定為預設值。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --set-version &lt;Distro&gt; &lt;Version&gt;
+</span></span><span class=line><span class=cl>        變更所指定發佈的版本。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --terminate, -t &lt;Distro&gt;
+</span></span><span class=line><span class=cl>        終止指定的發佈。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --unregister &lt;Distro&gt;
+</span></span><span class=line><span class=cl>        取消登錄發佈並刪除根檔案系統。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --mount &lt;Disk&gt;
+</span></span><span class=line><span class=cl>        在所有 WSL2 發佈中連結並裝載實體磁碟。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        選項:
+</span></span><span class=line><span class=cl>            --bare
+</span></span><span class=line><span class=cl>                將磁碟連結到 WSL2，但不要裝載磁碟。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            --type &lt;Type&gt;
+</span></span><span class=line><span class=cl>                裝載磁碟時要使用的檔案系統，若未指定，預設為 ext4。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            --options &lt;Options&gt;
+</span></span><span class=line><span class=cl>                其他裝載選項。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            --partition &lt;Index&gt;
+</span></span><span class=line><span class=cl>                要裝載之磁碟分割的索引，若未指定，預設為整個磁碟。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    --unmount <span class=o>[</span>Disk<span class=o>]</span>
+</span></span><span class=line><span class=cl>        從所有 WSL2 發佈卸載並中斷連結磁碟。
+</span></span><span class=line><span class=cl>        若在沒有引數的情況下呼叫，即卸載並中斷連結所有磁碟。
+</span></span></code></pre></td></tr></table></div></div><p>可以用參數<code>-l -o</code>把所有發行版都印出來</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>wsl -l -o
+</span></span><span class=line><span class=cl>以下是可安裝之有效發佈的清單。
+</span></span><span class=line><span class=cl>使用 <span class=s1>&#39;wsl --install -d &lt;Distro&gt;&#39;</span> 安裝。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>NAME            FRIENDLY NAME
+</span></span><span class=line><span class=cl>Ubuntu          Ubuntu
+</span></span><span class=line><span class=cl>Debian          Debian GNU/Linux
+</span></span><span class=line><span class=cl>kali-linux      Kali Linux Rolling
+</span></span><span class=line><span class=cl>openSUSE-42     openSUSE Leap <span class=m>42</span>
+</span></span><span class=line><span class=cl>SLES-12         SUSE Linux Enterprise Server v12
+</span></span><span class=line><span class=cl>Ubuntu-16.04    Ubuntu 16.04 LTS
+</span></span><span class=line><span class=cl>Ubuntu-18.04    Ubuntu 18.04 LTS
+</span></span><span class=line><span class=cl>Ubuntu-20.04    Ubuntu 20.04 LTS
+</span></span></code></pre></td></tr></table></div></div><p>挑自己喜歡的版本按照上面給的提示安裝，以Ubuntu為例:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>wsl --install -d Ubuntu
+</span></span></code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags><a href=/tags/shell/>Shell</a>
+<a href=/tags/linux/>Linux</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css integrity=sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js integrity=sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}],ignoredClasses:["gist"]})})</script></article><aside class=related-content--wrapper><h2 class=section-title>相關文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/post/lecture-1course-overview--the-shell/><div class=article-details><h2 class=article-title>Lecture 1:Course Overview + The Shell</h2></div></a></article><article><a href=/post/c%E8%AA%9E%E8%A8%80rand%E5%87%BD%E5%BC%8F%E7%9A%84%E7%94%A8%E6%B3%95/><div class=article-details><h2 class=article-title>C語言rand()函式的用法</h2></div></a></article><article class=has-image><a href=/post/%E5%90%91%E9%87%8F-vectorstl/><div class=article-image><img src=https://i.imgur.com/LV9jk0s.png loading=lazy data-key data-hash=https://i.imgur.com/LV9jk0s.png></div><div class=article-details><h2 class=article-title>向量 Vector(STL)</h2></div></a></article><article><a href=/post/%E4%BA%8C%E9%80%B2%E4%BD%8D%E5%88%B6-%E9%82%8F%E8%BC%AF%E9%96%98%E5%AF%A6%E4%BD%9C/><div class=article-details><h2 class=article-title>二進位制 & 邏輯閘實作</h2></div></a></article></div></div></aside><script src=https://giscus.app/client.js data-repo=yuto0226/blog data-repo-id=R_kgDOKuFr_g data-category=Announcements data-category-id=DIC_kwDOKuFr_s4CeiNj data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=light data-lang=en crossorigin=anonymous async></script><script>function setGiscusTheme(e){let t=document.querySelector("iframe.giscus-frame");t&&t.contentWindow.postMessage({giscus:{setConfig:{theme:e}}},"https://giscus.app")}(function(){addEventListener("message",t=>{if(event.origin!=="https://giscus.app")return;e()}),window.addEventListener("onColorSchemeChange",e);function e(){setGiscusTheme(document.documentElement.dataset.scheme==="light"?"light":"dark_dimmed")}})()</script><footer class=site-footer><section class=copyright>&copy;
+2021 -
+2024 Yuto's Note</section><section class=powerby>Never Too Late To Start<br>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 建立<br>主題 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.26.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 設計</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>資訊安全 on Yuto's Note</title><link>https://blog.yuto0226.com/tags/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/</link><description>Recent content in 資訊安全 on Yuto's Note</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Sat, 25 May 2024 00:46:14 +0800</lastBuildDate><atom:link href="https://blog.yuto0226.com/tags/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml"/><item><title>OverTheWire: Bandit 解題筆記｜Level 0 → Level 1</title><link>https://blog.yuto0226.com/post/overthewire-bandit-%E8%A7%A3%E9%A1%8C%E7%AD%86%E8%A8%98level-0-level-1/</link><pubDate>Sat, 25 May 2024 00:46:14 +0800</pubDate><guid>https://blog.yuto0226.com/post/overthewire-bandit-%E8%A7%A3%E9%A1%8C%E7%AD%86%E8%A8%98level-0-level-1/</guid><description>&lt;h1 id="bandit-level-0--level-1">Bandit: level 0 → Level 1
+&lt;/h1>&lt;h2 id="登入">登入
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">$ ssh -p &lt;span class="m">2220&lt;/span> bandit0@bandit.labs.overthewire.org
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>密碼：&lt;code>bandit0&lt;/code>&lt;/p>
+&lt;h2 id="題目">題目
+&lt;/h2>&lt;p>&lt;strong>關卡目標&lt;/strong>
+下一關的密碼存儲在家目錄（~/）中的一個名為 &lt;code>readme&lt;/code> 的檔案裡。使用這個密碼通過 SSH 登入到 &lt;code>bandit1&lt;/code>。每當你找到一個關卡的密碼時，使用 SSH（埠 2220）登入到該關卡，然後繼續遊戲。&lt;/p>
+&lt;p>&lt;strong>你可能需要用到的命令&lt;/strong>
+&lt;a class="link" href="https://man7.org/linux/man-pages/man1/ls.1.html" target="_blank" rel="noopener"
+>ls&lt;/a>, &lt;a class="link" href="https://man7.org/linux/man-pages/man1/cd.1p.html" target="_blank" rel="noopener"
+>cd&lt;/a>, &lt;a class="link" href="https://man7.org/linux/man-pages/man1/cat.1.html" target="_blank" rel="noopener"
+>cat&lt;/a>, &lt;a class="link" href="https://man7.org/linux/man-pages/man1/file.1.html" target="_blank" rel="noopener"
+>file&lt;/a>, &lt;a class="link" href="https://man7.org/linux/man-pages/man1/du.1.html" target="_blank" rel="noopener"
+>du&lt;/a>, &lt;a class="link" href="https://man7.org/linux/man-pages/man1/find.1.html" target="_blank" rel="noopener"
+>find&lt;/a>&lt;/p>
+&lt;h2 id="解題思路">解題思路
+&lt;/h2>&lt;p>這題的題目很明瞭的告訴你密碼就在 &lt;code>~/readme&lt;/code> 檔案中。所以問題是要如何開啟這個檔案，獲取裡面儲存的密碼。&lt;/p>
+&lt;p>這題需要了解的電腦知識：&lt;/p>
+&lt;ul>
+&lt;li>電腦檔案的路徑&lt;/li>
+&lt;li>&lt;code>ls&lt;/code>、&lt;code>cd&lt;/code>、&lt;code>cat&lt;/code> 指令&lt;/li>
+&lt;/ul>
+&lt;h2 id="詳解">詳解
+&lt;/h2>&lt;p>既然都知道是在 &lt;code>readme&lt;/code> 檔案裡面了，就只要利用 &lt;code>cat&lt;/code> 指令將檔案內容印出即可。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">bandit0@bandit:~$ cat readme
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Congratulations on your first steps into the bandit game!!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Please make sure you have &lt;span class="nb">read&lt;/span> the rules at https://overthewire.org/rules/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">If you are following a course, workshop, walthrough or other educational activity,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">please inform the instructor about the rules as well and encourage them to
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">contribute to the OverTheWire community so we can keep these games free!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The password you are looking &lt;span class="k">for&lt;/span> is: ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>於是我們就可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">$ &lt;span class="nb">exit&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>或著是按下鍵盤 &lt;code>Ctrl&lt;/code> + &lt;code>D&lt;/code>，退出連線，然後連接到 &lt;code>bandit1&lt;/code> 的帳號&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">$ ssh -p &lt;span class="m">2220&lt;/span> bandit1@bandit.labs.overthewire.org
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然後輸入剛剛拿到的密碼，進入 Level 1。&lt;/p>
+&lt;p>&lt;a class="link" href="https://blog.yuto0226.com/l4ww02JDQz2gelf_PNMlnQ" >Level 1 → Level 2&lt;/a>&lt;/p></description></item><item><title>OverTheWire: Bandit 解題筆記｜Level 1 → Level 2</title><link>https://blog.yuto0226.com/post/overthewire-bandit-%E8%A7%A3%E9%A1%8C%E7%AD%86%E8%A8%98level-1-level-2/</link><pubDate>Sat, 25 May 2024 00:46:14 +0800</pubDate><guid>https://blog.yuto0226.com/post/overthewire-bandit-%E8%A7%A3%E9%A1%8C%E7%AD%86%E8%A8%98level-1-level-2/</guid><description>&lt;h1 id="bandit-level-1--level-2">Bandit: Level 1 → Level 2
+&lt;/h1>&lt;h2 id="登入">登入
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">$ ssh -p &lt;span class="m">2220&lt;/span> bandit1@bandit.labs.overthewire.org
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>密碼：&lt;code>ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If&lt;/code>&lt;/p>
+&lt;h2 id="題目">題目
+&lt;/h2>&lt;p>&lt;strong>關卡目標&lt;/strong>
+下一關的密碼存儲在主目錄中的一個名為-的文件中。&lt;/p>
+&lt;p>&lt;strong>你可能需要用到的命令&lt;/strong>
+&lt;a class="link" href="https://man7.org/linux/man-pages/man1/ls.1.html" target="_blank" rel="noopener"
+>ls&lt;/a>, &lt;a class="link" href="https://man7.org/linux/man-pages/man1/cd.1p.html" target="_blank" rel="noopener"
+>cd&lt;/a>, &lt;a class="link" href="https://man7.org/linux/man-pages/man1/cat.1.html" target="_blank" rel="noopener"
+>cat&lt;/a>, &lt;a class="link" href="https://man7.org/linux/man-pages/man1/file.1.html" target="_blank" rel="noopener"
+>file&lt;/a>, &lt;a class="link" href="https://man7.org/linux/man-pages/man1/du.1.html" target="_blank" rel="noopener"
+>du&lt;/a>, &lt;a class="link" href="https://man7.org/linux/man-pages/man1/find.1.html" target="_blank" rel="noopener"
+>find&lt;/a>&lt;/p>
+&lt;p>&lt;strong>有用的閱讀資料&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://www.google.com/search?q=dashed&amp;#43;filename" target="_blank" rel="noopener"
+>Google 搜索 “dashed filename”（帶破折號的文件名）&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="http://tldp.org/LDP/abs/html/special-chars.html" target="_blank" rel="noopener"
+>Advanced Bash-scripting Guide - Chapter 3 - Special Characters&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="解題思路">解題思路
+&lt;/h2>&lt;h2 id="詳解">詳解
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">bandit1@bandit:~$ cat ./-
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;a class="link" href="https://blog.yuto0226.com/FMhBk2TQSUmGUh-yTerFwg" >OverTheWire: Bandit 解題筆記｜Level 2 → Level 3&lt;/a>&lt;/p></description></item><item><title>OverTheWire: Bandit 解題筆記｜Level 0</title><link>https://blog.yuto0226.com/post/overthewire-bandit-%E8%A7%A3%E9%A1%8C%E7%AD%86%E8%A8%98level-0/</link><pubDate>Fri, 24 May 2024 00:33:14 +0800</pubDate><guid>https://blog.yuto0226.com/post/overthewire-bandit-%E8%A7%A3%E9%A1%8C%E7%AD%86%E8%A8%98level-0/</guid><description>&lt;h1 id="bandit-level-0">Bandit: Level 0
+&lt;/h1>&lt;p>&lt;strong>關卡目標&lt;/strong>
+這一關的目標是讓你使用 SSH 登入遊戲。你需要連接的伺服器是 &lt;code>bandit.labs.overthewire.org&lt;/code>，埠 &lt;code>2220&lt;/code>。用戶名是 &lt;code>bandit0&lt;/code>，密碼是 &lt;code>bandit0&lt;/code>。登入後，請前往 &lt;a class="link" href="https://overthewire.org/wargames/bandit/bandit1.html" target="_blank" rel="noopener"
+>第 1 關&lt;/a> 頁面，了解如何通過 &lt;a class="link" href="https://overthewire.org/wargames/bandit/bandit1.html" target="_blank" rel="noopener"
+>第 1 關&lt;/a> 。&lt;/p>
+&lt;!-- more -->
+&lt;p>&lt;strong>你可能需要用到的指令&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://man7.org/linux/man-pages/man1/ssh.1.html" target="_blank" rel="noopener"
+>ssh&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>有用的閱讀資料&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://en.wikipedia.org/wiki/Secure_Shell" target="_blank" rel="noopener"
+>Secure Shell (SSH) on Wikipedia&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.wikihow.com/Use-SSH" target="_blank" rel="noopener"
+>How to use SSH on wikiHow&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="解題思路">解題思路
+&lt;/h2>&lt;p>從題目可以知道，要進入遊戲要透過 SSH 登入遠端的主機。所以我們的重點就是去了解要怎麼透過 &lt;code>ssh&lt;/code> 指令來進入遠端的主機。&lt;/p>
+&lt;p>如果對題目的一些名詞不太熟悉的話這邊列出幾個會要了解的知識：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/%e7%b6%b2%e9%9a%9b%e7%b6%b2%e8%b7%af%e5%8d%94%e5%ae%9a" target="_blank" rel="noopener"
+>Wiki: IP 網際網路協定&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/%e9%80%9a%e8%a8%8a%e5%9f%a0" target="_blank" rel="noopener"
+>Wiki: 埠&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/%e5%9f%9f%e5%90%8d" target="_blank" rel="noopener"
+>Wiki: 域名&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/zh-tw/Secure_Shell" target="_blank" rel="noopener"
+>Wiki: Secure Shell&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>那簡單來說，我們在使用網路上網的時候。網路上的資源是透過類似現實生活中的信件、包裹的方式傳送資料（網頁、影片&amp;hellip;等等）。&lt;/p>
+&lt;p>就如同寄信的時候會需要寄件人以及收件人一樣，電腦也需要被編號成不同的地址，也就是所謂的 IP 地址（IP address）。&lt;/p>
+&lt;p>而埠（通訊埠，port），可以想像成一棟大樓的許多樓層及房間。在寄包裹時我們也會標示要給幾號幾樓幾室的某某某。在電腦和電腦之間溝通時，除了必須指定地址外，也必須標示清楚要透過哪一個埠來傳輸資料。&lt;/p>
+&lt;p>域名則是幫 IP 地址取一個綽號。人們可以用簡單易懂的名稱來取代原本一坨數字的 IP 地址，例如告訴你 &lt;code>172.217.160.110&lt;/code> 這個 IP 地址，會知道這個地址是 Google(google.com) 的 IP 地址嗎？幾乎是不太可能。&lt;/p>
+&lt;p>SSH 是一種遠端連線到電腦的協定，可以透過加密方式建立安全的遠端連線。而我們通常會透過 &lt;code>ssh&lt;/code> 來連接到其他電腦。&lt;/p>
+&lt;h1 id="詳解">詳解
+&lt;/h1>&lt;p>首先要先理解如何使用 &lt;code>ssh&lt;/code>。這個我就直接問 Chat GPT 了。
+:::info
+連接到特定通訊埠：&lt;/p>
+&lt;p>如果 SSH 伺服器使用非默認通訊埠（22），可以使用 &lt;code>-p&lt;/code> 選項指定通訊埠：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ssh -p port_number username@remote_host
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>:::
+這就簡單了，以此類推，要連接上題目要求的伺服器可以這樣下指令：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-zsh" data-lang="zsh">&lt;span class="line">&lt;span class="cl">$ ssh -p &lt;span class="m">2220&lt;/span> bandit0@bandit.labs.overthewire.org
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然後就會跳出一個大大的 BANDIT 要求你輸入密碼，這時把 &lt;code>bandit0&lt;/code> 輸入進去就好（輸入沒顯示文字是正常的）。&lt;/p>
+&lt;p>那恭喜你成功進入了 level 0 🎉。成功登入之後，會顯示一大堆資訊在螢幕上，大致上在講這個遊戲的資訊、規則，可以斟酌閱讀。&lt;/p>
+&lt;p>接著就進入 &lt;a class="link" href="https://blog.yuto0226.com/NbmShGg7RjqrfzCni_t3Mg" >Level 0 → Level 1&lt;/a> 吧。&lt;/p></description></item><item><title>悠遊卡的資安問題</title><link>https://blog.yuto0226.com/post/%E6%82%A0%E9%81%8A%E5%8D%A1%E7%9A%84%E8%B3%87%E5%AE%89%E5%95%8F%E9%A1%8C/</link><pubDate>Mon, 26 Feb 2024 00:00:00 +0000</pubDate><guid>https://blog.yuto0226.com/post/%E6%82%A0%E9%81%8A%E5%8D%A1%E7%9A%84%E8%B3%87%E5%AE%89%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://blog.yuto0226.com/post/%E6%82%A0%E9%81%8A%E5%8D%A1%E7%9A%84%E8%B3%87%E5%AE%89%E5%95%8F%E9%A1%8C/cover.png" alt="Featured image of post 悠遊卡的資安問題" />&lt;p>近期悠遊卡公司與Apple進行把悠遊卡加到Apple的支付的事件，在網路上引發熱烈討論。然而，悠遊卡的資安問題也再度受到關注。&lt;/p>
+&lt;h2 id="悠遊卡的運作原理">悠遊卡的運作原理
+&lt;/h2>&lt;p>悠遊卡系統主要是應用 &lt;strong>法拉第電磁感應定律&lt;/strong> 來傳遞資訊。卡片內部有埋設線圈，當卡片靠近讀卡機時，讀卡機所產生的電場會讓線圈產生電流，供應給裡面的晶片（IC）產生電磁波訊號，再由讀卡機接收並解析資料。&lt;/p>
+&lt;p>這個技術被稱為「無線射頻辨識系統」（radio frequency identification，RFID），而悠遊卡裡面的則是RFID規格則是採用NXP公司的MIFARE Classic。&lt;/p>
+&lt;h2 id="mifare的安全性">MIFARE的安全性
+&lt;/h2>&lt;p>MIFARE是恩智浦半導體公司（NXP Semiconductors）擁有的一系列RFID技術。其成本低廉，讓他在目前市面上廣泛應用於各種系統，ex：門禁系統、圖書館借書證、識別卡&amp;hellip;等等。&lt;/p>
+&lt;p>然而，MIFARE 的安全性備受質疑。早在 2007 年，就有駭客破解了 MIFARE 晶片的演算法，並且有相關論文探討。&lt;/p>
+&lt;blockquote>
+&lt;p>2007年12月，在騷亂交流大會上Henryk Plötz和Karsten Nohl[6]發表了部分用於MIFARE晶片演算法上的逆向工程技術[7]。
+&lt;br>&lt;cite>維基百科：MIFARE&lt;/cite>&lt;/p>
+&lt;/blockquote>
+&lt;p>而台灣的紀錄著名的則有：&lt;/p>
+&lt;blockquote>
+&lt;p>2010年7月，臺灣大學電機系教授鄭振牟團隊使用改進過的監聽封包（Sniffer-Based）的攻擊手法攻擊Mifare卡。將1張正常使用中的悠遊卡，將餘額從正100多元，更改成為負五百多元[12]。
+&lt;br>&lt;cite>維基百科：MIFARE&lt;/cite>&lt;/p>
+&lt;/blockquote>
+&lt;p>在2021 SITCON 學生計算機年會，也有講者於「&lt;a class="link" href="https://hackmd.io/YtbBU59oSoKJuiSCQss4eQ?view" target="_blank" rel="noopener"
+>RFID 硬體資安實戰&lt;/a>」議程中分享MIFARE卡的資安問題。由此也可以看出其安全問題早已存在很久了。&lt;/p>
+&lt;h2 id="悠遊卡公司的應對方式">悠遊卡公司的應對方式
+&lt;/h2>&lt;p>遊遊卡公司面對這樣的資安問題，也只有透過補漏動的方式監督使用者。主要的作法為：&lt;/p>
+&lt;ul>
+&lt;li>用法律方式來嚇阻&lt;/li>
+&lt;li>搭配後台的資料庫核對不正當的竄改資料。&lt;/li>
+&lt;/ul>
+&lt;h2 id="改善方法">改善方法
+&lt;/h2>&lt;p>相較於於悠遊卡的MIFARE Classic技術，日本SUICA所使用的Felica技術具有更高的安全性，Apple也早已將SUICA整合進Apple Pay中。&lt;/p>
+&lt;p>此外，Apple也早已接納同是MIFARE家族，但安全性更高的MIFARE DESFire規格。&lt;/p>
+&lt;h2 id="參考資料">參考資料
+&lt;/h2>&lt;ul>
+&lt;li>&lt;a class="link" href="https://pansci.asia/archives/359263" target="_blank" rel="noopener"
+>一卡在手便利無窮，悠遊卡的設計原理——《我們的生活比你想的還物理》&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.ithome.com.tw/news/69970" target="_blank" rel="noopener"
+>悠遊卡遭駭，Mifare卡安全性遭質疑&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://canon.jp/business/solution/pro-printer/idprinter/useful/iccardcategory" target="_blank" rel="noopener"
+>FeliCa、Mifareの違いを解説！ICカードの種類と特長を比較する&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://mrmad.com.tw/iphone-support-easycard-ipass" target="_blank" rel="noopener"
+>Apple Pay為什麼不支援悠遊卡原因完全揭秘，金管會給出獨家答案&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://developer.apple.com/documentation/corenfc" target="_blank" rel="noopener"
+>Apple&amp;rsquo;s Core NFC Framework&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/zh-tw/%E6%82%A0%E9%81%8A%E5%8D%A1" target="_blank" rel="noopener"
+>維基百科：悠遊卡&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/MIFARE" target="_blank" rel="noopener"
+>維基百科：MIFARE&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>

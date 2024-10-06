@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>除錯紀錄 on Yuto's Note</title><link>https://blog.yuto0226.com/tags/%E9%99%A4%E9%8C%AF%E7%B4%80%E9%8C%84/</link><description>Recent content in 除錯紀錄 on Yuto's Note</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Mon, 21 Nov 2022 01:04:43 +0000</lastBuildDate><atom:link href="https://blog.yuto0226.com/tags/%E9%99%A4%E9%8C%AF%E7%B4%80%E9%8C%84/index.xml" rel="self" type="application/rss+xml"/><item><title>Latex 編譯時缺少 .sty 檔案</title><link>https://blog.yuto0226.com/post/latex-%E7%B7%A8%E8%AD%AF%E6%99%82%E7%BC%BA%E5%B0%91-.sty-%E6%AA%94%E6%A1%88/</link><pubDate>Mon, 21 Nov 2022 01:04:43 +0000</pubDate><guid>https://blog.yuto0226.com/post/latex-%E7%B7%A8%E8%AD%AF%E6%99%82%E7%BC%BA%E5%B0%91-.sty-%E6%AA%94%E6%A1%88/</guid><description>&lt;p>用 &lt;a class="link" href="https://ctan.org/pkg" target="_blank" rel="noopener"
+>CTAN&lt;/a> 單獨把遺失的檔案載回來，整個資料夾放回 &lt;code>C:\texlive\&amp;lt;年分&amp;gt;\texmf-dist\tex\latex&lt;/code>，然後在 Terminal 裡面 :&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">texhash
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
